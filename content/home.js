@@ -15,6 +15,13 @@
 // Photo files are shared across languages; translate alt text and captions here.
 export default {
   "en": {
+    // Photograph descriptions are translated alongside the homepage text.
+    "photos": {
+      "heroAlt": "Mirko with two friends in front of historic mosaics.",
+      "leftAlt": "Mirko waving in a traditional Japanese robe during his stay at a ryokan.",
+      "rightAlt": "Mirko raising a glass at the Beatles pub."
+    },
+    "exploreTitle": "A few things I’m passionate about",
     "label": "Home",
     "title": "Welcome",
     "intro": "I’m Mirko Bagnarol. This is my personal website, currently taking shape.",
@@ -44,6 +51,13 @@ export default {
     "entries": []
   },
   "it": {
+    // Le descrizioni delle fotografie seguono la lingua della pagina.
+    "photos": {
+      "heroAlt": "Mirko con due amici davanti a mosaici storici.",
+      "leftAlt": "Mirko saluta in abito tradizionale giapponese durante il soggiorno in un ryokan.",
+      "rightAlt": "Mirko alza un calice al pub dei Beatles."
+    },
+    "exploreTitle": "Alcune delle mie passioni",
     "label": "Home",
     "title": "Benvenuto",
     "intro": "Sono Mirko Bagnarol. Questo è il mio sito personale, attualmente in costruzione.",

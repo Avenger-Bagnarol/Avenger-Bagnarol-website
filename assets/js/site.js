@@ -49,6 +49,8 @@ function renderCurrentPage(moveFocus = false) {
   const entry = section?.content[language].entries.find(item => item.id === route.entryId);
   const main = document.getElementById("main");
 
+  // Scope the dark homepage palette so the other sections keep their own design.
+  document.body.classList.toggle("is-home", section?.id === "home" && !route.entryId);
   document.documentElement.lang = language;
   document.getElementById("site-label").textContent = labels.siteLabel;
   document.getElementById("skip-link").textContent = labels.skip;

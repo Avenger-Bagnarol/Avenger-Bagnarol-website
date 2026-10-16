@@ -90,3 +90,238 @@ figcaption { margin-top: 0.5rem; color: var(--muted); font-size: 0.9rem; }
   .content-panel { padding: 1.25rem; }
   .site-footer { padding: 1.5rem 1.25rem; }
 }
+
+/* ==========================================================================
+   Homepage: black foundations, midnight blue light and warm gold accents.
+   Variables are scoped to this route; the other sections retain their palette.
+   ========================================================================== */
+body.is-home {
+  color-scheme: dark;
+  --paper: #080a0f;
+  --surface: #101a2a;
+  --ink: #f1eee7;
+  --muted: #b7bfcc;
+  --accent: #dfbd77;
+  --border: #3b3540;
+  background:
+    radial-gradient(ellipse at 10% 48%, #132641 0, transparent 42%),
+    radial-gradient(ellipse at 95% 75%, #151f33 0, transparent 38%),
+    var(--paper);
+}
+
+/* A quiet header leaves the photographs as the visual focus. */
+.is-home .site-header {
+  background: #080a0f;
+  border-color: #dfbd7730;
+}
+
+.is-home .brand {
+  color: var(--accent);
+}
+
+.is-home main {
+  padding-top: 2.5rem;
+}
+
+/* ==========================================================================
+   Hero: a spacious editorial title beside an upright, carefully cropped photo.
+   The crop removes lower clothing rather than faces. No overlay covers subjects.
+   ========================================================================== */
+.home-hero {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid #dfbd7745;
+  border-radius: 8px;
+  background: linear-gradient(125deg, #14233a, #090d15 75%);
+  box-shadow: 0 24px 70px #00000040;
+}
+
+.home-hero-content {
+  padding: clamp(1.5rem, 4vw, 3.25rem);
+}
+
+.home-hero h1 {
+  max-width: 8ch;
+  margin-bottom: 1.5rem;
+  font-size: clamp(3rem, 5.5vw, 4.75rem);
+  color: var(--accent);
+}
+
+.home-hero .intro {
+  max-width: 32ch;
+  margin-bottom: 0;
+}
+
+.home-hero-image {
+  width: 100%;
+  height: 100%;
+  min-height: 440px;
+  max-height: 540px;
+  object-fit: cover;
+  object-position: 50% 48%;
+  image-orientation: from-image;
+  border-radius: 0;
+}
+
+/* ==========================================================================
+   Personal content: a readable central column flanked by transparent portraits.
+   The subtle halo and shadow follow each cutout; no opaque frame is added.
+   ========================================================================== */
+.home-personal {
+  display: grid;
+  /* Wider side columns enlarge the portraits while reserving space for text. */
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 2.1fr) minmax(0, 1.6fr);
+  align-items: center;
+  gap: 1.5rem;
+  margin: 4.5rem 0;
+}
+
+.home-biography {
+  display: grid;
+  gap: 1rem;
+}
+
+.home-biography .content-panel {
+  padding: 1.5rem;
+  border: 1px solid #dfbd772b;
+  border-left: 2px solid var(--accent);
+  background: linear-gradient(120deg, #152239d9, #0b101bd9);
+}
+
+.home-biography h2 {
+  color: var(--accent);
+  font-size: 1.1rem;
+}
+
+.home-biography p:last-child {
+  margin-bottom: 0;
+}
+
+.home-portrait {
+  position: relative;
+  min-width: 0;
+  padding-bottom: 1rem;
+  background: radial-gradient(ellipse at center, #dfbd7712, transparent 68%);
+}
+
+.home-portrait img {
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+  filter: drop-shadow(0 12px 12px #00000065);
+  /* Preserve the upper two-thirds, then fade into the background beneath. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 66.6667%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 66.6667%, transparent 100%);
+}
+
+/* A short gold rule grounds each portrait without changing the original PNG. */
+.home-portrait::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+/* ==========================================================================
+   Interests: reuse the existing section descriptions and navigation targets.
+   ========================================================================== */
+.home-interests {
+  padding-top: 2.5rem;
+  border-top: 1px solid #dfbd7735;
+}
+
+.home-section-heading {
+  color: var(--accent);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  font-weight: 400;
+}
+
+.home-interests .section-overview {
+  margin-top: 1.75rem;
+  padding-top: 0;
+  border: 0;
+}
+
+.home-interests .section-card {
+  padding: 1.75rem;
+  border: 1px solid #dfbd772b;
+  border-radius: 6px;
+  background: linear-gradient(145deg, #132139, #0a0e16);
+}
+
+.home-interests h3 {
+  margin: 0 0 1rem;
+  color: var(--ink);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.is-home a:hover {
+  color: #ffe2a5;
+}
+
+/* ==========================================================================
+   Responsive layout: portraits move below the biography on tablets and phones.
+   Grid placement is explicit; images always occupy their own reserved space.
+   ========================================================================== */
+@media (max-width: 900px) {
+  .home-personal {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+  }
+
+  .home-biography {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .home-portrait {
+    width: 100%;
+    max-width: 288px;
+    justify-self: center;
+    align-self: end;
+  }
+}
+
+@media (max-width: 600px) {
+  .is-home main {
+    padding-top: 1.5rem;
+  }
+
+  .home-hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .home-hero-content {
+    padding: 2rem 1.5rem;
+  }
+
+  .home-hero h1 {
+    max-width: none;
+    font-size: clamp(2.8rem, 12vw, 4rem);
+  }
+
+  .home-hero-image {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    aspect-ratio: 4 / 5;
+    object-position: 50% 48%;
+  }
+
+  .home-personal {
+    column-gap: 1rem;
+  }
+
+  .home-biography .content-panel,
+  .home-interests .section-card {
+    padding: 1.25rem;
+  }
+}

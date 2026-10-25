@@ -1,47 +1,53 @@
-// Edit English and Italian text here; the layout is handled separately.
-// Paragraphs are plain text. Links use { label, href }; use relative paths for local files.
-// For a CV, for example: { label: "Download CV", href: "assets/documents/cv-en.pdf" }.
-//
-// To add a detail page, add an entry to BOTH languages with the same stable id:
-// {
-//   id: "your-page-slug",
-//   title: "Your title",
-//   summary: "Short text shown on the section page",
-//   paragraphs: ["First paragraph", "Second paragraph"],
-//   photos: [{ src: "assets/images/travel/your-photo.jpg", alt: "Describe the image", caption: "Optional caption" }],
-//   links: [{ label: "Link title", href: "https://example.org" }],
-// }
-// Entries suit destinations, publications, decklists or any future detail content.
-// Photo files are shared across languages; translate alt text and captions here.
+import armenia from "./travel/armenia.js";
+
+// ADD DESTINATIONS HERE: create a content file modelled on travel/armenia.js,
+// import it above, and add it to this list. The first destination is the default.
+// Keep each id unique and stable: it becomes part of #travel/your-destination.
+const destinations = [
+  armenia,
+];
+
 export default {
-  "en": {
-    "label": "Travel",
-    "title": "Travel",
-    "intro": "Countries, destinations and photographs. The first travel pages will be added here.",
-    "blocks": [
-      {
-        "title": "Countries & destinations",
-        "paragraphs": [
-          "Content to be added."
-        ],
-        "links": []
-      }
-    ],
-    "entries": []
+  en: {
+    label: "Travel",
+    title: "Travel",
+    // This existing overview also appears on the homepage; keep it independent.
+    intro: "Countries, destinations and photographs. The first travel pages will be added here.",
+    eyebrow: "A photographic journal",
+    destinationsLabel: "Destinations",
+    openPhoto: "Enlarge photograph",
+    viewerTitle: "Photograph viewer",
+    close: "Close viewer",
+    previous: "Previous photograph",
+    next: "Next photograph",
+    of: "of",
+    imageError: "The photograph could not be loaded. Try another image or open the original.",
+    openOriginal: "Open original photograph",
+    destinations,
+    // The existing router uses these records for destination URLs and page titles.
+    entries: destinations.map(destination => ({
+      id: destination.id,
+      title: destination.title.en,
+    })),
   },
-  "it": {
-    "label": "Viaggi",
-    "title": "Viaggi",
-    "intro": "Paesi, destinazioni e fotografie. Le prime pagine di viaggio saranno aggiunte qui.",
-    "blocks": [
-      {
-        "title": "Paesi e destinazioni",
-        "paragraphs": [
-          "Contenuti da aggiungere."
-        ],
-        "links": []
-      }
-    ],
-    "entries": []
-  }
+  it: {
+    label: "Viaggi",
+    title: "Viaggi",
+    intro: "Paesi, destinazioni e fotografie. Le prime pagine di viaggio saranno aggiunte qui.",
+    eyebrow: "Un diario fotografico",
+    destinationsLabel: "Destinazioni",
+    openPhoto: "Ingrandisci fotografia",
+    viewerTitle: "Visualizzatore di fotografie",
+    close: "Chiudi il visualizzatore",
+    previous: "Fotografia precedente",
+    next: "Fotografia successiva",
+    of: "di",
+    imageError: "Impossibile caricare la fotografia. Prova un’altra immagine o apri l’originale.",
+    openOriginal: "Apri la fotografia originale",
+    destinations,
+    entries: destinations.map(destination => ({
+      id: destination.id,
+      title: destination.title.it,
+    })),
+  },
 };

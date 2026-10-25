@@ -1,10 +1,8 @@
-// Build DOM nodes with textContent so editable content is always treated as text.
-export function createElement(tagName, className, text) {
-  const element = document.createElement(tagName);
-  if (className) element.className = className;
-  if (text) element.textContent = text;
-  return element;
-}
+import { createElement } from "./dom.js";
+import { renderTravel } from "./travel.js";
+
+// Preserve the existing shared import used by the site router.
+export { createElement } from "./dom.js";
 
 // Allow web, contact and local asset links, while rejecting executable URL schemes.
 function safeUrl(value) {
@@ -17,9 +15,9 @@ function safeUrl(value) {
   }
 }
 
-function appendParagraphs(container, paragraphs = []) {
+function appendParagraphs(container, paragraphs = [], className = "") {
   for (const paragraph of paragraphs) {
-    container.append(createElement("p", "", paragraph));
+    container.append(createElement("p", className, paragraph));
   }
 }
 
@@ -145,9 +143,74 @@ function renderHome(content, language, labels, sections) {
   return fragment;
 }
 
+// Physics uses one semantic publication list for every screen size.
+// All scientific text, metadata and optional PDF paths live in content/physics.js.
+function renderPhysics(content, language) {
+  const fragment = document.createDocumentFragment();
+  const introduction = createElement("section", "physics-introduction");
+  introduction.append(createElement("p", "eyebrow", content.eyebrow));
+  introduction.append(createElement("h1", "", content.title));
+  appendParagraphs(introduction, content.introduction, "physics-prose");
+  fragment.append(introduction);
+
+  const research = createElement("section", "physics-section");
+  research.append(createElement("h2", "physics-heading", content.researchTitle));
+  const researchGrid = createElement("div", "physics-research-grid");
+  for (const area of content.research) {
+    const panel = createElement("section", "physics-research-card");
+    panel.append(createElement("h3", "", area.title));
+    appendParagraphs(panel, area.paragraphs, "physics-prose");
+    researchGrid.append(panel);
+  }
+  research.append(researchGrid);
+  fragment.append(research);
+
+  const publications = createElement("section", "physics-section");
+  publications.append(createElement("h2", "physics-heading", content.publicationsTitle));
+  publications.append(createElement("p", "physics-section-intro physics-prose", content.publicationsIntro));
+  const list = createElement("ol", "physics-publications");
+  for (const publication of content.publications) {
+    const item = createElement("li");
+    const article = createElement("article", "physics-publication");
+    const metadata = createElement("p", "publication-metadata");
+    const year = createElement("time", "", publication.year);
+    year.dateTime = publication.year;
+    metadata.append(year, document.createTextNode(` · ${publication.venue}`));
+    article.append(metadata);
+
+    const title = createElement("h3", "", publication.title);
+    title.lang = "en";
+    article.append(title);
+    article.append(createElement("p", "publication-authors", publication.authors));
+    article.append(createElement(
+      "p",
+      "publication-description physics-prose",
+      publication.description[language],
+    ));
+
+    // Empty PDF paths produce no link; add a path only once the file exists.
+    appendLinks(article, [
+      { label: content.readPaper, href: publication.paperUrl },
+      { label: "PDF", href: publication.pdfUrl },
+    ]);
+    item.append(article);
+    list.append(item);
+  }
+  publications.append(list);
+  fragment.append(publications);
+
+  return fragment;
+}
+
 export function renderPage(section, entry, language, labels, sections) {
   const fragment = document.createDocumentFragment();
   const content = section.content[language];
+  if (section.id === "travel") {
+    return renderTravel(content, language, entry?.id);
+  }
+  if (section.id === "physics" && !entry) {
+    return renderPhysics(content, language);
+  }
   if (section.id === "home" && !entry) {
     return renderHome(content, language, labels, sections);
   }

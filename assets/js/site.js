@@ -49,8 +49,13 @@ function renderCurrentPage(moveFocus = false) {
   const entry = section?.content[language].entries.find(item => item.id === route.entryId);
   const main = document.getElementById("main");
 
-  // Scope the dark homepage palette so the other sections keep their own design.
+  // Destination tabs keep keyboard focus when navigating within Travel.
+  const wasTravel = document.body.classList.contains("is-travel");
+
+  // Home, Physics and Travel share the dark palette.
   document.body.classList.toggle("is-home", section?.id === "home" && !route.entryId);
+  document.body.classList.toggle("is-physics", section?.id === "physics" && !route.entryId);
+  document.body.classList.toggle("is-travel", section?.id === "travel");
   document.documentElement.lang = language;
   document.getElementById("site-label").textContent = labels.siteLabel;
   document.getElementById("skip-link").textContent = labels.skip;
@@ -70,7 +75,9 @@ function renderCurrentPage(moveFocus = false) {
   }
 
   // Announce navigation by focusing the new page, without moving focus on first load.
-  if (moveFocus) {
+  if (moveFocus && wasTravel && section?.id === "travel" && entry) {
+    main.querySelector('[role="tab"][aria-selected="true"]').focus({ preventScroll: true });
+  } else if (moveFocus) {
     main.focus({ preventScroll: true });
     window.scrollTo({ top: 0 });
   }

@@ -485,8 +485,7 @@ body.is-travel {
 }
 
 /* ==========================================================================
-   Travel journal: photographs keep their full aspect ratio and original colour.
-   Portraits take one column; landscapes take two, without fixed-height crops.
+   Travel journal: deliberate mosaic tiles, with uncropped originals in the viewer.
    ========================================================================== */
 .is-travel main {
   padding-top: 2.5rem;
@@ -539,41 +538,70 @@ body.is-travel {
   overflow-wrap: break-word;
 }
 
+/* Source order defines placement. Row height keeps portrait crops close to 3:4.
+   No dense packing: visual order always matches keyboard and viewer order. */
 .travel-gallery {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  align-items: start;
-  gap: 2rem 1.25rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: clamp(60px, 10vw, 110px);
+  gap: 0.75rem;
 }
 
 .travel-photo {
+  position: relative;
   min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid #dfbd7730;
+  border-radius: 4px;
 }
 
-.travel-photo-wide {
+.photo-tall {
+  grid-row: span 3;
+}
+
+.photo-large {
   grid-column: span 2;
+  grid-row: span 6;
+}
+
+.photo-wide {
+  grid-column: span 2;
+  grid-row: span 3;
 }
 
 .travel-photo-link {
   display: block;
-  border-radius: 4px;
+  height: 100%;
   background: #101a2a;
   cursor: zoom-in;
 }
 
 .travel-photo img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 
-.travel-photo-link:hover {
-  outline: 1px solid #dfbd7780;
-  outline-offset: 4px;
+.travel-photo:focus-within,
+.travel-photo:hover {
+  border-color: var(--accent);
+}
+
+.travel-photo-link:focus-visible {
+  outline-offset: -5px;
 }
 
 .travel-photo figcaption {
+  position: absolute;
+  inset: auto 0 0;
+  margin: 0;
+  padding: 1.5rem 0.75rem 0.5rem;
+  background: linear-gradient(transparent, #030509e8);
+  color: #f1eee7;
   font-size: 0.8rem;
   line-height: 1.5;
+  pointer-events: none;
 }
 
 /* Native modal: focus stays inside until closed, and Escape works automatically. */
@@ -645,8 +673,11 @@ body:has(.travel-viewer[open]) {
 }
 
 .travel-viewer-figure img {
-  width: 100%;
-  height: min(70dvh, 950px);
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: calc(100dvh - 15rem);
+  margin: auto;
   object-fit: contain;
   border-radius: 0;
 }
@@ -663,18 +694,22 @@ body:has(.travel-viewer[open]) {
   font-size: 0.85rem;
 }
 
-/* At tablet sizes, two natural-height columns avoid gaps between mixed formats.
-   Reading and keyboard order both proceed down the first column, then the next. */
+/* Two columns on tablets; feature portraits retain their upright proportions. */
 @media (min-width: 601px) and (max-width: 900px) {
   .travel-gallery {
-    display: block;
-    columns: 2;
-    column-gap: 1.25rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: clamp(95px, 19vw, 165px);
   }
 
-  .travel-photo {
-    break-inside: avoid;
-    margin-bottom: 1.5rem;
+  .photo-large {
+    grid-column: span 1;
+    grid-row: span 3;
+  }
+
+  /* A full-width opening portrait leaves even pairs before the landscapes. */
+  .travel-photo:first-child {
+    grid-column: 1 / -1;
+    grid-row: span 6;
   }
 }
 
@@ -685,11 +720,21 @@ body:has(.travel-viewer[open]) {
 
   .travel-gallery {
     grid-template-columns: minmax(0, 1fr);
-    gap: 1.75rem;
+    grid-auto-rows: auto;
+    gap: 1rem;
   }
 
-  .travel-photo-wide {
+  .travel-photo {
     grid-column: auto;
+    grid-row: auto;
+  }
+
+  .travel-photo-link {
+    height: auto;
+  }
+
+  .travel-photo img {
+    height: auto;
   }
 
   .travel-viewer {
@@ -709,7 +754,7 @@ body:has(.travel-viewer[open]) {
   }
 
   .travel-viewer-figure img {
-    height: 56dvh;
+    max-height: calc(100dvh - 18rem);
   }
 
   .travel-viewer-arrow {

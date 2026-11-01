@@ -48,7 +48,9 @@ function createPhotoViewer(destination, language, labels) {
     const description = photo.caption?.[language] || "";
     errorMessage.hidden = true;
     image.alt = photo.alt[language];
-    image.src = destination.directory + photo.filename;
+    // Clear the previous photograph while the selected original loads.
+    image.style.visibility = "hidden";
+    image.src = destination.directory + photo.full;
     caption.textContent = description;
     caption.hidden = !description;
     counter.textContent = `${currentIndex + 1} ${labels.of} ${destination.photos.length}`;
@@ -59,6 +61,7 @@ function createPhotoViewer(destination, language, labels) {
     errorMessage.hidden = false;
   });
   image.addEventListener("load", () => {
+    image.style.visibility = "visible";
     errorMessage.hidden = true;
   });
   closeButton.addEventListener("click", () => dialog.close());
@@ -85,7 +88,27 @@ function createPhotoViewer(destination, language, labels) {
     }
     // Escape is handled by the native dialog, including its close event.
   });
+  // Close on empty space, including the native backdrop, but never on controls.
+  // Requiring both endpoints outside the image avoids closing after an image drag.
+  let startedOnBackground = false;
+
+  function isBackground(target) {
+    return target === dialog || target === stage || target === figure;
+  }
+
+  dialog.addEventListener("pointerdown", event => {
+    startedOnBackground = isBackground(event.target);
+  });
+  dialog.addEventListener("click", event => {
+    if (startedOnBackground && isBackground(event.target)) {
+      dialog.close();
+    }
+    startedOnBackground = false;
+  });
+
   dialog.addEventListener("close", () => {
+    // Release the current original; opening the gallery never requests originals.
+    image.removeAttribute("src");
     if (openingLink?.isConnected) openingLink.focus({ preventScroll: true });
   });
 
@@ -157,15 +180,15 @@ export function renderTravel(content, language, destinationId) {
   const gallery = createElement("div", "travel-gallery");
   destination.photos.forEach((photo, index) => {
     const figure = createElement("figure", "travel-photo");
-    if (photo.width > photo.height) figure.classList.add("travel-photo-wide");
+    figure.classList.add(photo.mosaic);
 
     // A real image link also supports opening the original in another browser tab.
     const link = createElement("a", "travel-photo-link");
-    link.href = destination.directory + photo.filename;
+    link.href = destination.directory + photo.full;
     link.setAttribute("aria-label", `${content.openPhoto}: ${photo.alt[language]}`);
     link.setAttribute("aria-haspopup", "dialog");
     const image = createElement("img");
-    image.src = link.href;
+    image.src = destination.directory + photo.thumbnail;
     image.alt = photo.alt[language];
     image.width = photo.width;
     image.height = photo.height;

@@ -2,7 +2,7 @@ import { createElement } from "./dom.js";
 
 // The native modal dialog traps focus and makes the page behind it inert.
 // Listeners belong to the dialog, so navigating away also removes their state.
-function createPhotoViewer(destination, language, labels) {
+export function createPhotoViewer(destination, language, labels) {
   const dialog = createElement("dialog", "travel-viewer");
   dialog.setAttribute("aria-label", `${labels.viewerTitle} — ${destination.title[language]}`);
 

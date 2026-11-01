@@ -52,10 +52,11 @@ function renderCurrentPage(moveFocus = false) {
   // Destination tabs keep keyboard focus when navigating within Travel.
   const wasTravel = document.body.classList.contains("is-travel");
 
-  // Home, Physics and Travel share the dark palette.
+  // All four sections share the dark palette.
   document.body.classList.toggle("is-home", section?.id === "home" && !route.entryId);
   document.body.classList.toggle("is-physics", section?.id === "physics" && !route.entryId);
   document.body.classList.toggle("is-travel", section?.id === "travel");
+  document.body.classList.toggle("is-yugioh", section?.id === "yugioh");
   document.documentElement.lang = language;
   document.getElementById("site-label").textContent = labels.siteLabel;
   document.getElementById("skip-link").textContent = labels.skip;

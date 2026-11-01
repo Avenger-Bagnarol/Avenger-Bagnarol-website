@@ -1,5 +1,6 @@
 import { createElement } from "./dom.js";
 import { renderTravel } from "./travel.js";
+import { renderYugioh } from "./yugioh.js";
 
 // Preserve the existing shared import used by the site router.
 export { createElement } from "./dom.js";
@@ -205,6 +206,9 @@ function renderPhysics(content, language) {
 export function renderPage(section, entry, language, labels, sections) {
   const fragment = document.createDocumentFragment();
   const content = section.content[language];
+  if (section.id === "yugioh") {
+    return renderYugioh(content, entry, language);
+  }
   if (section.id === "travel") {
     return renderTravel(content, language, entry?.id);
   }

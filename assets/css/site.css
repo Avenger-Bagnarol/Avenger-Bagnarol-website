@@ -92,12 +92,13 @@ figcaption { margin-top: 0.5rem; color: var(--muted); font-size: 0.9rem; }
 }
 
 /* ==========================================================================
-   Home, Physics and Travel: black foundations, midnight blue and warm gold accents.
-   Variables are scoped to these routes; other sections retain their palette.
+   Shared section theme: black foundations, midnight blue and warm gold accents.
+   Route classes apply the same palette to overview and detail pages.
    ========================================================================== */
 body.is-home,
 body.is-physics,
-body.is-travel {
+body.is-travel,
+body.is-yugioh {
   color-scheme: dark;
   --paper: #080a0f;
   --surface: #101a2a;
@@ -114,14 +115,16 @@ body.is-travel {
 /* A quiet header leaves the photographs as the visual focus. */
 .is-home .site-header,
 .is-physics .site-header,
-.is-travel .site-header {
+.is-travel .site-header,
+.is-yugioh .site-header {
   background: #080a0f;
   border-color: #dfbd7730;
 }
 
 .is-home .brand,
 .is-physics .brand,
-.is-travel .brand {
+.is-travel .brand,
+.is-yugioh .brand {
   color: var(--accent);
 }
 
@@ -270,7 +273,8 @@ body.is-travel {
 
 .is-home a:hover,
 .is-physics a:hover,
-.is-travel a:hover {
+.is-travel a:hover,
+.is-yugioh a:hover {
   color: #ffe2a5;
 }
 
@@ -761,4 +765,281 @@ body:has(.travel-viewer[open]) {
     justify-self: center;
     width: min(100%, 100px);
   }
+}
+
+/* Yu-Gi-Oh!: shared palette, independent formats and a matching event list. */
+.is-yugioh main {
+  padding-top: 2.5rem;
+}
+
+.yugioh-introduction {
+  margin-bottom: 2.5rem;
+}
+
+.yugioh-introduction h1,
+.yugioh-heading {
+  color: var(--accent);
+}
+
+.yugioh-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+.yugioh-column {
+  min-width: 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid #dfbd7750;
+}
+
+.yugioh-heading {
+  margin-bottom: 1.5rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  font-weight: 400;
+}
+
+.yugioh-format,
+.yugioh-event-link,
+.yugioh-panel {
+  border: 1px solid #dfbd7735;
+  border-radius: 6px;
+  background: linear-gradient(145deg, #132139, #0a0e16);
+}
+
+.yugioh-format {
+  margin-bottom: 0.85rem;
+  transition: border-color 160ms ease;
+}
+
+.yugioh-format summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  color: var(--ink);
+  font-weight: 600;
+  list-style: none;
+  cursor: pointer;
+}
+
+.yugioh-format summary::-webkit-details-marker {
+  display: none;
+}
+
+/* A CSS chevron follows the native open state without extra JavaScript. */
+.yugioh-format summary::after {
+  content: "";
+  flex: 0 0 0.45rem;
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-right: 0.2rem;
+  border-right: 1.5px solid var(--accent);
+  border-bottom: 1.5px solid var(--accent);
+  transform: rotate(45deg);
+  transition: transform 160ms ease;
+}
+
+.yugioh-format[open] summary::after {
+  transform: rotate(225deg);
+}
+
+.yugioh-format:hover,
+.yugioh-format[open],
+.yugioh-event-link:hover {
+  border-color: #dfbd7790;
+}
+
+.yugioh-format[open] summary {
+  color: var(--accent);
+}
+
+.yugioh-decks {
+  margin: 0 1.25rem 1.25rem;
+  padding-left: 1.5rem;
+  color: var(--muted);
+}
+
+.yugioh-decks li + li {
+  margin-top: 0.5rem;
+}
+
+.yugioh-coming-soon {
+  margin: 0 1.25rem 1.25rem 2.75rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.yugioh-events {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.yugioh-events li + li {
+  margin-top: 0.85rem;
+}
+
+.yugioh-event-link {
+  display: block;
+  padding: 1.1rem 1.25rem;
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 160ms ease;
+}
+
+.yugioh-panel {
+  padding: clamp(1.25rem, 3vw, 2rem);
+  margin-bottom: 1.5rem;
+  overflow-wrap: anywhere;
+}
+
+.yugioh-panel p {
+  max-width: 78ch;
+  color: var(--muted);
+}
+
+.yugioh-panel p:last-child {
+  margin-bottom: 0;
+}
+
+.yugioh-gallery-placeholder {
+  border-style: dashed;
+}
+
+@media (max-width: 700px) {
+  .is-yugioh main {
+    padding-top: 1.5rem;
+  }
+
+  .yugioh-columns {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .yugioh-format,
+  .yugioh-format summary::after,
+  .yugioh-event-link {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   Deck dissertations: reusable long-form articles with ordinary semantic HTML.
+   Fondamento is locally hosted (license in assets/fonts/Fondamento-OFL.txt).
+   Only archetype titles use this decorative font; it loads when first needed.
+   ========================================================================== */
+@font-face {
+  font-family: "Fondamento";
+  src: url("../fonts/Fondamento-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+.deck-article {
+  max-width: 980px;
+  margin-inline: auto;
+}
+
+.deck-header {
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #dfbd7735;
+  text-align: center;
+}
+
+.deck-title {
+  margin: 0 0 1rem;
+  color: var(--accent);
+  font-family: "Fondamento", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: clamp(3.5rem, 10vw, 6rem);
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.deck-format {
+  margin: 0.85rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+}
+
+/* Editorial tiers: exactly four values, shared by all future deck pages.
+   The written tier always identifies the assessment independently of color. */
+.deck-power-tier {
+  display: inline-block;
+  margin: 0;
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--tier-color, var(--accent));
+  border-radius: 999px;
+  background: #101a2a;
+  color: var(--ink);
+}
+
+.deck-power-tier strong {
+  color: var(--tier-color, var(--accent));
+}
+
+.deck-power-tier[data-tier="Extreme"] { --tier-color: #dfbd77; }
+.deck-power-tier[data-tier="High"] { --tier-color: #e3b49b; }
+.deck-power-tier[data-tier="Medium"] { --tier-color: #a9c2df; }
+.deck-power-tier[data-tier="Low"] { --tier-color: #b7bfcc; }
+
+/* Paragraph rules also apply to future subsections without extra classes. */
+.deck-body p {
+  max-width: 76ch;
+  margin: 0 auto 1.4rem;
+  color: var(--muted);
+  text-align: justify;
+  text-align-last: start;
+  text-justify: inter-word;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  hyphenate-limit-chars: 6 3 3;
+  overflow-wrap: break-word;
+}
+
+.deck-body section {
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+}
+
+.deck-body h2 {
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  font-weight: 400;
+}
+
+.deck-body h3 {
+  margin: 2rem 0 1rem;
+  color: var(--ink);
+  font-size: 1.2rem;
+}
+
+.deck-body figure {
+  margin: 2rem 0;
+}
+
+.deck-body figure a {
+  display: block;
+  cursor: zoom-in;
+}
+
+.deck-body figure img {
+  width: 100%;
+  height: auto;
+  border: 1px solid #dfbd7735;
+  background: var(--surface);
+}
+
+.deck-body figcaption {
+  text-align: center;
 }

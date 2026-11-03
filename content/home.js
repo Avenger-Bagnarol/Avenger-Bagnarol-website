@@ -23,8 +23,8 @@ export default {
     },
     "exploreTitle": "Let me share my burning passions!",
     "label": "Home",
-    "title": "Welcome",
-    "intro": "I’m Mirko Bagnarol. This is my personal website, currently taking shape.",
+    "title": "Welcome to the space of",
+    "intro": "Here you can find a lot about myself and what drives me around the world!",
     "blocks": [
       {
         "title": "Introduction",
@@ -36,16 +36,16 @@ export default {
       {
         "title": "Academic & professional career",
         "paragraphs": [
-          "Content to be added."
+          "I graduated in Physics, going from the Bachelor's in Padua, to the Master's in Trento, to finally the PhD in my beloved Jerusalem. Currently, I left academia to work as a System Engineer!"
         ],
         "links": []
       },
       {
         "title": "CV, contacts & links",
         "paragraphs": [
-          "Content to be added."
+          ""
         ],
-        "links": []
+        "links": [{"label": "LinkedIn", "href": "https://www.linkedin.com/in/mirkobagnarol"}]
       }
     ],
     "entries": []
@@ -59,8 +59,8 @@ export default {
     },
     "exploreTitle": "Lascia che ti mostri le mie passioni!",
     "label": "Home",
-    "title": "Benvenuto",
-    "intro": "Sono Mirko Bagnarol. Questo è il mio sito personale, attualmente in costruzione.",
+    "title": "Benvenuto nello spazio di",
+    "intro": "Qui puoi trovare molto su di me e su ciò che mi guida in questo mondo!",
     "blocks": [
       {
         "title": "Presentazione",
@@ -72,16 +72,16 @@ export default {
       {
         "title": "Percorso accademico e professionale",
         "paragraphs": [
-          "Contenuti da aggiungere."
+          "Sono laureato in Fisica, dalla triennale a Padova, passando per la magistrale a Trento, per finire con il dottorato nella mia amata Gerusalemme. Successivamente, ho lasciato l'accadmia per lavorare come ingegnere di sistema."
         ],
         "links": []
       },
       {
         "title": "CV, contatti e link",
         "paragraphs": [
-          "Contenuti da aggiungere."
+          ""
         ],
-        "links": []
+        "links": [{"label": "LinkedIn", "href": "https://www.linkedin.com/in/mirkobagnarol"}]
       }
     ],
     "entries": []

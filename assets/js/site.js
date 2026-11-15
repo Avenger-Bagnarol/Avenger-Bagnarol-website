@@ -1,6 +1,10 @@
 import { interfaceText } from "../../content/site.js";
 import { sections } from "./sections.js";
 import { createElement, renderPage } from "./render.js";
+import { mathReady } from "./mathjax.js";
+
+let mathJax = null;
+let mathRendering = Promise.resolve();
 
 // Language is encoded in the URL, making bilingual pages bookmarkable and shareable.
 // English is the default; switching languages leaves the current hash untouched.
@@ -42,6 +46,25 @@ function updateNavigation(sectionId, language, labels) {
 }
 
 function renderCurrentPage(moveFocus = false) {
+  if (!mathJax) {
+    renderPageContent(moveFocus);
+    return;
+  }
+
+  // Serialize DOM replacement with typesetting: rapid navigation must not remove
+  // nodes while MathJax is still processing them. Read the latest route each time.
+  mathRendering = mathRendering.then(async () => {
+    const main = document.getElementById("main");
+    mathJax.typesetClear([main]);
+    mathJax.texReset();
+    renderPageContent(moveFocus);
+    await mathJax.typesetPromise([main]);
+  }).catch(error => {
+    console.warn("Mathematics could not be rendered:", error);
+  });
+}
+
+function renderPageContent(moveFocus = false) {
   const language = getLanguage();
   const labels = interfaceText[language];
   const route = getRoute();
@@ -100,3 +123,9 @@ document.getElementById("skip-link").addEventListener("click", event => {
 });
 
 renderCurrentPage();
+
+// Revisit the current route after startup, even if navigation happened meanwhile.
+mathReady.then(instance => {
+  mathJax = instance;
+  if (mathJax) renderCurrentPage();
+});

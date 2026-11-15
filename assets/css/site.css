@@ -24,6 +24,15 @@ a { color: var(--accent); text-underline-offset: 0.25em; }
 a:hover { text-decoration-thickness: 2px; }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }
 
+/* Inline math inherits the surrounding color. Long display equations scroll
+   within their own line instead of widening cards or the mobile page. */
+main mjx-container[jax="CHTML"][display="true"] {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-block: 0.2em;
+}
+
 /* The skip link is visible when reached by keyboard. */
 .skip-link {
   position: fixed;

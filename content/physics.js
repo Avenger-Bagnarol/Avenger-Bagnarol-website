@@ -1,3 +1,6 @@
+// Mathematics: use $...$ inline and $$...$$ for display equations.
+// In JavaScript strings, double LaTeX backslashes: "$\\frac{1}{2}$".
+// String.raw`$\frac{1}{2}$` is also supported when writing longer expressions.
 // EDIT PUBLICATIONS HERE. Records appear in this order (newest first).
 // Keep official paper titles in English; descriptions are translated below each title.
 // paperUrl is the Read Paper link. Leave pdfUrl empty until the local file exists:
@@ -86,6 +89,19 @@ const publications = [
       it: "Calcoliamo lo scattering neutrone–alfa in onda s descrivendo esplicitamente i cinque nucleoni al leading e next-to-leading order nell’EFT senza pioni. Dai livelli energetici in trappola ricaviamo sfasamenti, lunghezza di scattering e raggio efficace.",
     },
   },
+  {
+    title: "Measurement of the surface susceptibility and the surface conductivity of atomically thin MoS₂ by spectroscopic ellipsometry",
+    authors: "Gaurav Jayaswal, Zhenyu Dai, Xixiang Zhang, Mirko Bagnarol, Alessandro Martucci, Michele Merano",
+    venue: "Optics Letters 43, 703–706",
+    year: "2018",
+    paperUrl: "https://doi.org/10.1364/OL.43.000703",
+    //pdfUrl: "https://arxiv.org/pdf/1710.00340",
+    pdfUrl: "",
+    description: {
+      en: "We investigate the optical properties of monolayer MoS₂ using spectroscopic ellipsometry, extracting its surface susceptibility and conductivity through a genuinely two-dimensional model. We demonstrate that the conventional thin-slab approximation introduces errors of at least 10% in the determination of the surface susceptibility.",
+      it: "Studiamo le proprietà ottiche del MoS₂ monostrato mediante ellissometria spettroscopica, ricavandone la suscettività e la conducibilità superficiali attraverso un modello genuinamente bidimensionale. Dimostriamo che la convenzionale approssimazione a strato sottile introduce errori di almeno il 10% nella determinazione della suscettività superficiale.",
+  },
+},
 ];
 
 // EDIT SCIENTIFIC TEXT HERE. Each language uses the same layout and publications.
@@ -106,7 +122,7 @@ export default {
       {
         title: "Theoretical Nuclear Physics",
         paragraphs: [
-          "I study how a small number of nucleons interact at low energies, using pionless effective field theory (EFT) to describe nuclear forces at leading and next-to-leading orders. My work includes few-nucleon scattering, the nonperturbative treatment of Coulomb interactions, and the extraction of phase shifts and other scattering observables.",
+          "I study how a small number of nucleons interact at low energies, using pionless effective field theory ($\\slashed{\\pi}$EFT) to describe nuclear forces at leading and next-to-leading orders. My work includes few-nucleon scattering, the nonperturbative treatment of Coulomb interactions, and the extraction of phase shifts and other scattering observables.",
           "I combine the stochastic variational method with harmonic oscillator traps and the BERW formalism to connect discrete energy levels with scattering in free space. I am also interested in perturbative corrections to observables such as nuclear radii and in the numerical solution of few-body quantum-mechanical problems.",
         ],
       },
@@ -119,7 +135,7 @@ export default {
       },
     ],
     publicationsTitle: "Scientific Publications",
-    publicationsIntro: "Selected papers on few-body nuclear physics, halo nuclei, numerical methods, and cellular dynamics.",
+    publicationsIntro: "",
     readPaper: "Read Paper",
     publications,
     entries: [],
@@ -139,7 +155,7 @@ export default {
       {
         title: "Fisica Nucleare Teorica",
         paragraphs: [
-          "Studio le interazioni tra pochi nucleoni a bassa energia, utilizzando la teoria di campo efficace senza pioni (EFT) per descrivere le forze nucleari al leading e next-to-leading order. Il mio lavoro comprende lo scattering di sistemi a pochi nucleoni, il trattamento non perturbativo dell’interazione coulombiana e l’estrazione degli sfasamenti e di altre osservabili di scattering.",
+          "Studio le interazioni tra pochi nucleoni a bassa energia, utilizzando la teoria di campo efficace senza pioni ($\\slashed{\\pi}$EFT) per descrivere le forze nucleari al leading e next-to-leading order. Il mio lavoro comprende lo scattering di sistemi a pochi nucleoni, il trattamento non perturbativo dell’interazione coulombiana e l’estrazione degli sfasamenti e di altre osservabili di scattering.",
           "Combino il metodo variazionale stocastico con trappole armoniche e il formalismo BERW per collegare i livelli energetici discreti allo scattering nello spazio libero. Mi interessano inoltre le correzioni perturbative a osservabili come i raggi nucleari e la soluzione numerica di problemi quantistici a pochi corpi.",
         ],
       },
@@ -152,7 +168,7 @@ export default {
       },
     ],
     publicationsTitle: "Pubblicazioni Scientifiche",
-    publicationsIntro: "Una selezione di articoli su fisica nucleare a pochi corpi, nuclei ad alone, metodi numerici e dinamica cellulare.",
+    publicationsIntro: "",
     readPaper: "Leggi Articolo",
     publications,
     entries: [],

@@ -91,10 +91,10 @@ const publications = [
 // EDIT SCIENTIFIC TEXT HERE. Each language uses the same layout and publications.
 export default {
   en: {
-    label: "Physics",
+    label: "Physics", // Label in main page
     title: "Physics & Research",
-    // This existing overview is also used by the homepage's Physics card.
-    intro: "A space for my scientific background, research interests and publications. Content will be added here.",
+    // Description in main page
+    intro: "A space dedicated to my journey through Physics, from my Bachelor's degree to my Ph.D., and to my adventures in research!", 
     eyebrow: "Dr. Mirko Bagnarol · Theoretical nuclear physics",
     introduction: [
       "My scientific background is in theoretical nuclear physics, with a particular focus on the numerical description of low-energy few-body systems.",
@@ -126,8 +126,8 @@ export default {
   },
   it: {
     label: "Fisica",
-    title: "Fisica e Ricerca",
-    intro: "Uno spazio per il mio percorso scientifico, gli interessi di ricerca e le pubblicazioni. I contenuti saranno aggiunti qui.",
+    title: "Fisica e Ricerca", 
+    intro: "Uno spazio dedicato al mio percorso nella Fisica, dalla triennale al dottorato, e alle mie avventure nel mondo della ricerca!",
     eyebrow: "Dr. Mirko Bagnarol · Fisica nucleare teorica",
     introduction: [
       "La mia formazione scientifica è nella fisica nucleare teorica, con particolare attenzione alla descrizione numerica dei sistemi a pochi corpi a bassa energia.",

@@ -68,8 +68,8 @@ export default {
   en: {
     label: "Yu-Gi-Oh!",
     title: "Yu-Gi-Oh!",
-    // Shared with the existing homepage overview; keep this text independent.
-    intro: "A space for decklists, formats, tournaments and other game content.",
+    // Description in the main page
+    intro: "A space for my beloved Yu-Gi-Oh!, from snapshots and decklists from the events I've attended to in-depth guides to the decks I've mastered!",
     formatsTitle: "Formats",
     eventsTitle: "Events",
     comingSoon: "Coming soon",
@@ -92,7 +92,7 @@ export default {
   it: {
     label: "Yu-Gi-Oh!",
     title: "Yu-Gi-Oh!",
-    intro: "Uno spazio per liste dei mazzi, formati, tornei e altri contenuti sul gioco.",
+    intro: "Uno spazio dedicato al mio amato Yu-Gi-Oh!, dalle foto e decklist degli eventi a cui ho partecipato fino alle guide approfondite sui mazzi che ho imparato a padroneggiare!",
     formatsTitle: "Formati",
     eventsTitle: "Eventi",
     comingSoon: "Prossimamente",

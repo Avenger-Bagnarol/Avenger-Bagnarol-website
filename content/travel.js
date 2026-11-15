@@ -11,8 +11,8 @@ export default {
   en: {
     label: "Travel",
     title: "Travel",
-    // This existing overview also appears on the homepage; keep it independent.
-    intro: "Countries, destinations and photographs. The first travel pages will be added here.",
+    // Description in main page
+    intro: "A space for postcards and snapshots of the places I've visited during my travels through this wonderful world!",
     eyebrow: "A photographic journal",
     destinationsLabel: "Destinations",
     openPhoto: "Enlarge photograph",
@@ -33,7 +33,7 @@ export default {
   it: {
     label: "Viaggi",
     title: "Viaggi",
-    intro: "Paesi, destinazioni e fotografie. Le prime pagine di viaggio saranno aggiunte qui.",
+    intro: "Uno spazio per cartoline e istantanee dei luoghi che ho visitato durante i miei viaggi in questo mondo meraviglioso!",
     eyebrow: "Un diario fotografico",
     destinationsLabel: "Destinazioni",
     openPhoto: "Ingrandisci fotografia",

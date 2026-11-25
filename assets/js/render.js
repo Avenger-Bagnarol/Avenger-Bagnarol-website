@@ -81,7 +81,7 @@ function renderHome(content, language, labels, sections) {
   hero.append(introduction);
 
   const heroImage = createHomeImage(
-    "gli_avengers.jpg",
+    "gli_avengers.webp",
     content.photos.heroAlt,
     2736,
     3648,
@@ -96,7 +96,7 @@ function renderHome(content, language, labels, sections) {
   const personal = createElement("div", "home-personal");
   const leftPortrait = createElement("figure", "home-portrait home-portrait-left");
   const leftImage = createHomeImage(
-    "io_giappone_ryukan_cropped.png",
+    "io_giappone_ryukan_cropped.webp",
     content.photos.leftAlt,
     1024,
     1536,
@@ -116,7 +116,7 @@ function renderHome(content, language, labels, sections) {
 
   const rightPortrait = createElement("figure", "home-portrait home-portrait-right");
   const rightImage = createHomeImage(
-    "io_beatles_pub_cropped.png",
+    "io_beatles_pub_cropped.webp",
     content.photos.rightAlt,
     1171,
     1343,

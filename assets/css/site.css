@@ -573,14 +573,23 @@ body.is-yugioh {
   grid-row: span 3;
 }
 
-.photo-large {
+.photo-large,
+.photo-feature {
   grid-column: span 2;
   grid-row: span 6;
 }
 
-.photo-wide {
+.photo-wide,
+.photo-panorama {
   grid-column: span 2;
   grid-row: span 3;
+}
+
+/* Give very wide source images room to keep their panoramic proportions. */
+@media (min-width: 901px) {
+  .photo-panorama {
+    grid-column: 1 / -1;
+  }
 }
 
 .travel-photo-link {
@@ -719,8 +728,9 @@ body:has(.travel-viewer[open]) {
     grid-row: span 3;
   }
 
-  /* A full-width opening portrait leaves even pairs before the landscapes. */
-  .travel-photo:first-child {
+  /* Keep feature portraits full-width and wide opening photos shallow. */
+  .travel-photo.photo-large:first-child,
+  .travel-photo.photo-feature {
     grid-column: 1 / -1;
     grid-row: span 6;
   }

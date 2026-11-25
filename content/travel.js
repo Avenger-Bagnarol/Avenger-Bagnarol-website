@@ -1,10 +1,12 @@
 import armenia from "./travel/armenia.js";
+import georgia from "./travel/georgia.js";
 
 // ADD DESTINATIONS HERE: create a content file modelled on travel/armenia.js,
 // import it above, and add it to this list. The first destination is the default.
 // Keep each id unique and stable: it becomes part of #travel/your-destination.
 const destinations = [
   armenia,
+  georgia,
 ];
 
 export default {

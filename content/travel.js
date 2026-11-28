@@ -1,5 +1,6 @@
 import armenia from "./travel/armenia.js";
 import georgia from "./travel/georgia.js";
+import japan from "./travel/japan.js";
 
 // ADD DESTINATIONS HERE: create a content file modelled on travel/armenia.js,
 // import it above, and add it to this list. The first destination is the default.
@@ -7,6 +8,7 @@ import georgia from "./travel/georgia.js";
 const destinations = [
   armenia,
   georgia,
+  japan,
 ];
 
 export default {

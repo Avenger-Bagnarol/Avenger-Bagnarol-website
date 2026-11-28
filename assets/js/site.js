@@ -83,7 +83,6 @@ function renderPageContent(moveFocus = false) {
   document.documentElement.lang = language;
   document.getElementById("site-label").textContent = labels.siteLabel;
   document.getElementById("skip-link").textContent = labels.skip;
-  document.getElementById("footer-note").textContent = labels.footer;
   document.querySelector('meta[name="description"]').content = labels.description;
   updateNavigation(section?.id, language, labels);
 

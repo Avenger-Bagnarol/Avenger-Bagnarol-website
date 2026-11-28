@@ -45,7 +45,9 @@ export default {
         "paragraphs": [
           ""
         ],
-        "links": [{"label": "LinkedIn", "href": "https://www.linkedin.com/in/mirkobagnarol"}]
+        "links": [{"label": "Instagram", "href": "https://www.instagram.com/avenger_bagnarol/"},
+          {"label": "LinkedIn", "href": "https://www.linkedin.com/in/mirkobagnarol"}                  
+        ]
       }
     ],
     "entries": []
@@ -81,7 +83,8 @@ export default {
         "paragraphs": [
           ""
         ],
-        "links": [{"label": "LinkedIn", "href": "https://www.linkedin.com/in/mirkobagnarol"}]
+        "links": [{"label": "Instagram", "href": "https://www.instagram.com/avenger_bagnarol/"},
+          {"label": "LinkedIn", "href": "https://www.linkedin.com/in/mirkobagnarol"}]
       }
     ],
     "entries": []

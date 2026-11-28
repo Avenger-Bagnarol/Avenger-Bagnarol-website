@@ -61,6 +61,7 @@ nav a { color: var(--muted); text-decoration: none; padding: 0.35rem 0; }
 nav a[aria-current] { color: var(--accent); box-shadow: 0 2px var(--accent); }
 .language-navigation { gap: 0.75rem; font-size: 0.85rem; }
 
+/* Main padding supplies the space below the content on every route. */
 main {
   max-width: var(--content-width);
   min-height: 65vh;
@@ -89,7 +90,6 @@ p { margin: 0 0 1rem; }
 figure { margin: 0; }
 img { display: block; max-width: 100%; height: auto; border-radius: 4px; }
 figcaption { margin-top: 0.5rem; color: var(--muted); font-size: 0.9rem; }
-.site-footer { max-width: var(--content-width); margin: auto; padding: 1.5rem 2rem; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; color: var(--muted); font-size: 0.85rem; }
 .notice { max-width: var(--content-width); margin: auto; padding: 1rem 2rem; }
 
 @media (max-width: 700px) {
@@ -97,7 +97,6 @@ figcaption { margin-top: 0.5rem; color: var(--muted); font-size: 0.9rem; }
   #section-navigation { order: 3; width: 100%; gap: 1rem; }
   main { padding: 3rem 1.25rem; }
   .content-panel { padding: 1.25rem; }
-  .site-footer { padding: 1.5rem 1.25rem; }
 }
 
 /* ==========================================================================
